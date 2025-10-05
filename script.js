@@ -31,7 +31,13 @@ function selectColor(){
 
 // Fill all uncolored cells
 function fillU(){
-    alert("Clicked Fill All Uncolored"); // Replace this line with your code.
+    if(!colorSelected) return; // If no color we leave it as is
+    const cells = document.querySelectorAll("#grid td"); // #grid td selects all the elements inside the element with Id grid
+    cells.forEach(td => {
+        if(!td.style.backgroundColor){
+            td.style.backgroundColor = colorSelected;
+        }
+    });
 }
 
 // Fill all cells
