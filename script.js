@@ -42,7 +42,12 @@ function fillU(){
 
 // Fill all cells
 function fillAll(){
-    alert("Clicked Fill All"); // Replace this line with your code.
+    if(!colorSelected) return;
+    const cells = document.querySelectorAll("#grid td");
+    cells.forEach(td => {
+        td.style.backgroundColor = colorSelected;
+    });
+
 }
 
 // Clear all cells
