@@ -6,21 +6,21 @@ let colorSelected;
 // Add a row
 function addR() {
     const newRow = document.createElement('tr');
-    const newCol = document.createElement('td');
-    if (numCols == 0 && numRows == 0){
+
+    // These lines are now run once, outside the conditional
+    table.appendChild(newRow);
+    numRows++;
+
+    // This handles the first cell being added to the grid
+    if (numCols === 0) {
         numCols++;
-        numRows++;
-        table.appendChild(newRow)
-        table.children[0].appendChild(newCol);
-    }else{
-        table.appendChild(newRow);
-        numRows++;
-        table.children[0].appendChild(newCol); 
-        //for (let i = 0; i < numCols; i++){
-            //table.children[table.children.length-1].appendChild(newCol); 
-        //}
     }
 
+    // This loop adds the correct number of cells to the new row
+    for (let i = 0; i < numCols; i++) {
+        const newCol = document.createElement('td');
+        newRow.appendChild(newCol);
+    }
 }
 
 // Add a column
