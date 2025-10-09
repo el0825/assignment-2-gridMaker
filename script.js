@@ -3,6 +3,8 @@ let numRows = 0;
 let numCols = 0;
 let colorSelected; 
 
+const table = document.getElementById('grid');
+
 // Add a row
 function addR() {
     const newRow = document.createElement('tr');
@@ -61,7 +63,5 @@ function clearAll(){
     alert("Clicked Clear All"); // Replace this line with your code.
 }
 
-const addRButton = document.body.children[0];
-addRButton.addEventListener('click',addR);
 
-const table = document.getElementById('grid');
+
