@@ -94,8 +94,9 @@ function fillAll(){
 
 // Clear all cells
 function clearAll(){
-    alert("Clicked Clear All"); // Replace this line with your code.
+    const cells = document.querySelectorAll("#grid td");
+
+    cells.forEach(td => {
+        td.style.backgroundColor = "";
+    });
 }
-
-
-
