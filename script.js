@@ -40,7 +40,6 @@ function addC() {
             const newCol = document.createElement('td');
             const currentRow = table.children[i];
             currentRow.appendChild(newCol);
-            console.log("Went through for-loop counter");
         }
         numCols++;
     }
@@ -51,12 +50,19 @@ function addC() {
 
 // Remove a row
 function removeR() {
-    alert("Clicked Remove Row"); // Replace this line with your code.
+    const lastRow = table.lastElementChild;
+    lastRow.remove();
+    numRows--;
 }
 
 // Remove a column
 function removeC() {
-    alert("Clicked Remove Col"); // Replace this line with your code.
+    for (let i = numRows-1; i >= 0; i--){
+        const currentRow = table.children[i];
+        const currentCol = currentRow.lastElementChild;
+        currentCol.remove();
+    }   
+    numCols--;
 }
 
 // Set global variable for selected color
