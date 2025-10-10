@@ -40,7 +40,6 @@ function addC() {
             const newCol = document.createElement('td');
             const currentRow = table.children[i];
             currentRow.appendChild(newCol);
-            console.log("Went through for-loop counter");
         }
         numCols++;
     }
@@ -51,7 +50,9 @@ function addC() {
 
 // Remove a row
 function removeR() {
-    alert("Clicked Remove Row"); // Replace this line with your code.
+    const lastRow = table.lastElementChild;
+    lastRow.remove();
+    numRows--;
 }
 
 // Remove a column
@@ -72,12 +73,23 @@ function selectColor(){
 
 // Fill all uncolored cells
 function fillU(){
-    alert("Clicked Fill All Uncolored"); // Replace this line with your code.
+    if(!colorSelected) return; // If no color we leave it as is
+    const cells = document.querySelectorAll("#grid td"); // #grid td selects all the elements inside the element with Id grid
+    cells.forEach(td => {
+        if(!td.style.backgroundColor){
+            td.style.backgroundColor = colorSelected;
+        }
+    });
 }
 
 // Fill all cells
 function fillAll(){
-    alert("Clicked Fill All"); // Replace this line with your code.
+    if(!colorSelected) return;
+    const cells = document.querySelectorAll("#grid td");
+    cells.forEach(td => {
+        td.style.backgroundColor = colorSelected;
+    });
+
 }
 
 // Clear all cells
