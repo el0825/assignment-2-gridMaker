@@ -56,14 +56,14 @@ function removeR() {
 }
 
 // Remove a column
-    function removeC() {
-        //for (let i = numRows-1; i >= 0; i--){
-            //const currentRow = table.children[i];
-            //const currentCol = currentRow.lastElementChild;
-            //currentCol.remove();
-        //}   
-        //numCols--;
-    }
+function removeC() {
+    for (let i = numRows-1; i >= 0; i--){
+        const currentRow = table.children[i];
+        const currentCol = currentRow.lastElementChild;
+        currentCol.remove();
+    }   
+    numCols--;
+}
 
 // Set global variable for selected color
 function selectColor(){
