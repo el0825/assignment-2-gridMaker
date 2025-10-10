@@ -56,7 +56,12 @@ function removeR() {
 
 // Remove a column
 function removeC() {
-    alert("Clicked Remove Col"); // Replace this line with your code.
+    for (let i = numRows-1; i >= 0; i--){
+        const currentRow = table.children[i];
+        const currentCol = currentRow.lastElementChild;
+        currentCol.remove();
+    }   
+    numCols--;
 }
 
 // Set global variable for selected color
