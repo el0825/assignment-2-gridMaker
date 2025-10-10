@@ -10,12 +10,11 @@ function addR() {
     const newRow = document.createElement('tr');
 
     // These lines are now run once, outside the conditional
-    table.appendChild(newRow);
-    numRows++;
+
 
     // This handles the first cell being added to the grid
     if (numCols === 0) {
-        numCols++;
+        numCols = 1;
     }
 
     // This loop adds the correct number of cells to the new row
@@ -23,46 +22,72 @@ function addR() {
         const newCol = document.createElement('td');
         newRow.appendChild(newCol);
     }
+
+    table.appendChild(newRow);
+    numRows++;
+
+    console.log("numRows: " + numRows);
 }
 
 // Add a column
 function addC() {
     const newRow = document.createElement('tr');
 
-    if (numCols == 0){ //Handles first cell being added to grid
-        table.appendChild(newRow);
-        const newCol = document.createElement('td');
-        newRow.appendChild(newCol);
-        numCols++;
-        numRows++;
-    }else{
-        for (let i = 0; i < numRows; i++){
-            const newCol = document.createElement('td');
-            const currentRow = table.children[i];
-            currentRow.appendChild(newCol);
-        }
-        numCols++;
+    if (numRows === 0) {
+        addR();
+        return; //exit function since addR has started the grid
     }
 
+    // If rows exist, loop through them and add one cell to each
+    for (let i = 0; i < numRows; i++){
+        const newCol = document.createElement('td');
+        const currentRow = table.children[i];
+        currentRow.appendChild(newCol);
+    }
 
-    
+    numCols++; // Increment column count
+
+    console.log("numCols: " + numCols);
 }
 
 // Remove a row
 function removeR() {
+    if (numRows == 0){
+        return;
+    }
     const lastRow = table.lastElementChild;
-    lastRow.remove();
-    numRows--;
+    if (lastRow){
+        lastRow.remove(); 
+        numRows--;
+    }
+
+    console.log("numRows: " + numRows);
+    if (numRows == 0){ //does not run function again if there is no more grid
+        numCols = 0;
+        return;
+    }
 }
 
 // Remove a column
 function removeC() {
-    for (let i = numRows-1; i >= 0; i--){
+    if (numCols == 0){
+        return;
+    }
+    for (let i = 0; i < numRows; i++) {
         const currentRow = table.children[i];
-        const currentCol = currentRow.lastElementChild;
-        currentCol.remove();
-    }   
-    numCols--;
+        if (currentRow) {
+            currentRow.lastElementChild.remove();
+        }
+    }
+    numCols--;     
+    
+    if (numCols === 0) {
+        // ...you must clear the actual HTML table...
+        table.innerHTML = "";
+        // ...and then reset the row count.
+        numRows = 0;
+    }
+    console.log("numCols: " + numCols);
 }
 
 // Set global variable for selected color
