@@ -27,8 +27,25 @@ function addR() {
 
 // Add a column
 function addC() {
+    const newRow = document.createElement('tr');
 
-    numCols++;
+    if (numCols == 0){ //Handles first cell being added to grid
+        table.appendChild(newRow);
+        const newCol = document.createElement('td');
+        newRow.appendChild(newCol);
+        numCols++;
+        numRows++;
+    }else{
+        for (let i = 0; i < numRows; i++){
+            const newCol = document.createElement('td');
+            const currentRow = table.children[i];
+            currentRow.appendChild(newCol);
+            console.log("Went through for-loop counter");
+        }
+        numCols++;
+    }
+
+
     
 }
 
