@@ -69,6 +69,13 @@ function removeC() {
 function selectColor(){
     colorSelected = document.getElementById("selectedColorId").value;
     console.log(colorSelected);
+
+    const cells = document.querySelectorAll("#grid td");
+    cells.forEach(td => {
+        td.onclick = function() {
+            td.style.backgroundColor = colorSelected;
+        }
+    });
 }
 
 // Fill all uncolored cells
